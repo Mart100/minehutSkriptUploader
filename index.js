@@ -6,13 +6,14 @@ const MinehutAPI = require('node-minehut-api')
 
 const Minehut = new MinehutAPI()
 
-program.version('0.0.1')
+program.version('1.0.0')
 
 program
   .command('upload [file]')
   .description('upload a specific file')
   .action((file, options) => {
     if(!file) console.log('Please specify a file with -f skriptFile.sk')
+    if(!file.endsWith(".sk")) file += '.sk'
     let fullFile = process.cwd() + '\\' + file
     uploadSkriptToMinehut(fullFile, {})
 
@@ -25,6 +26,7 @@ program
   .description('Upload when file updates')
   .action((file, options) => {
     if(!file) console.log('Please specify a file with -f skriptFile.sk')
+    if(!file.endsWith(".sk")) file += '.sk'
     let fullFile = process.cwd() + '\\' + file
     let options1 = {}
     if(options.reload) options1.reload = true
