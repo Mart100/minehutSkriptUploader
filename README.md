@@ -10,7 +10,7 @@ MinehutSkriptUploader requires [Node.js](https://nodejs.org/) v4+ to run.
 Install the package with npm:
 
 ```sh
-$ npm install minehutSkriptUploader -g
+$ npm install minehutskriptuploader -g
 ```
 
 ### Usage
