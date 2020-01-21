@@ -6,7 +6,7 @@ const MinehutAPI = require('node-minehut-api')
 
 const Minehut = new MinehutAPI()
 
-program.version('1.0.1')
+program.version('1.0.2')
 
 program
   .command('upload [file]')
