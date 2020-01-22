@@ -7,7 +7,7 @@ const cp = require('child_process')
 
 const Minehut = new MinehutAPI()
 
-program.version('1.0.3')
+program.version('1.0.4')
 
 program
   .command('upload [file]')
