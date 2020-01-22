@@ -1,6 +1,6 @@
 {
   "name": "minehutskriptuploader",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "MinehutSkriptUploader is an easy way to hotreload and upload skript files to your minehut server.",
   "main": "index.js",
   "repository": {

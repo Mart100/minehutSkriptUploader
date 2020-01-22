@@ -7,14 +7,14 @@ const cp = require('child_process')
 
 const Minehut = new MinehutAPI()
 
-program.version('1.0.4')
+program.version('1.0.5')
 
 program
   .command('upload [file]')
   .option("-r, --reload", "Reload the skript ingame")
   .description('upload a specific file')
   .action((file, options) => {
-    if(!file) console.log('Please specify a file')
+    if(!file) return console.log('Please specify a file')
     if(!file.endsWith(".sk")) file += '.sk'
     let options1 = {}
     if(options.reload) options1.reload = true
@@ -25,11 +25,11 @@ program
 
 
 program
-  .command('watch [file]')
+  .command('watch [file/dir]')
   .option("-r, --reload", "Reload the skript ingame")
   .description('Upload when file updates')
   .action((file, options) => {
-    if(!file) console.log('Please specify a file')
+    if(!file) return console.log('Please specify a file')
     if(!file.endsWith(".sk") && file != "./") file += '.sk'
     let fullFile = process.cwd() + '\\' + file
     let options1 = {}
@@ -66,6 +66,7 @@ program
 
 program
   .command('update')
+  .description('Updates the minehutSkriptUploader module')
   .action(async (options) => {
     console.log('Updating...')
     cp.exec("npm install minehutskriptuploader -g", (err, stdout, stderr) => {
