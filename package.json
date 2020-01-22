@@ -1,13 +1,13 @@
 {
   "name": "minehutskriptuploader",
   "version": "1.0.2",
-  "description": "",
+  "description": "MinehutSkriptUploader is an easy way to hotreload and upload skript files to your minehut server.",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/Mart100/minehutSkriptUploader.git"
   },
-  "author": "",
+  "author": "Mart van Enckevort <marvanenck@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "commander": "^4.1.0",
