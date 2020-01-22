@@ -37,3 +37,10 @@ $ mhsu watch [fileName]
 ```sh
 $ mhsu watch ./
 ```
+
+### Examples
+```sh
+$ mhsu login martvanenck1@gmail.com hunter12
+$ mhsu upload sidebar.sk
+$ mhsu watch ./ -r
+```
