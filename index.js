@@ -3,6 +3,7 @@
 const fs = require('fs')
 const program = require('commander')
 const MinehutAPI = require('node-minehut-api')
+const cp = require('child_process')
 
 const Minehut = new MinehutAPI()
 
@@ -61,6 +62,17 @@ program
     } catch(e) {
       console.log('An error occured. These are probaly not valid login details.')
     }
+  })
+
+program
+  .command('update')
+  .action(async (options) => {
+    console.log('Updating...')
+    cp.exec("npm install minehutskriptuploader -g", (err, stdout, stderr) => {
+      if(err) throw err;
+      if(stdout) console.log(`stdout: ${stdout}`);
+      if(stderr) console.log(`stderr: ${stderr}`);
+    })
   })
 
 program.parse(process.argv)
