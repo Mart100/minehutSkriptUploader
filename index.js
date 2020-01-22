@@ -7,7 +7,7 @@ const cp = require('child_process')
 
 const Minehut = new MinehutAPI()
 
-program.version('1.0.5')
+program.version('1.0.6')
 
 program
   .command('upload [file]')
@@ -42,7 +42,7 @@ program
       if(lastSave+250 > now) return
       lastSave = now
       console.log(`File ${filename} has updated. Uploading...`)
-      await uploadSkriptToMinehut(__dirname+'\\'+filename, options1)
+      await uploadSkriptToMinehut(process.cwd()+'\\'+filename, options1)
       
     })
 
