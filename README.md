@@ -33,3 +33,7 @@ $ mhsu upload [fileName]
 ```sh
 $ mhsu watch [fileName]
 ```
+###### Or watch a whole directory for file changes:
+```sh
+$ mhsu watch ./
+```

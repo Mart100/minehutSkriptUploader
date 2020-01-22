@@ -6,7 +6,7 @@ const MinehutAPI = require('node-minehut-api')
 
 const Minehut = new MinehutAPI()
 
-program.version('1.0.2')
+program.version('1.0.3')
 
 program
   .command('upload [file]')
@@ -29,18 +29,19 @@ program
   .description('Upload when file updates')
   .action((file, options) => {
     if(!file) console.log('Please specify a file')
-    if(!file.endsWith(".sk")) file += '.sk'
+    if(!file.endsWith(".sk") && file != "./") file += '.sk'
     let fullFile = process.cwd() + '\\' + file
     let options1 = {}
     if(options.reload) options1.reload = true
     let lastSave = new Date().getTime()
     fs.watch(fullFile, async (event, filename) => {
       if(!filename) return
+      if(!filename.endsWith(".sk")) return
       let now = new Date().getTime()
       if(lastSave+250 > now) return
       lastSave = now
       console.log(`File ${filename} has updated. Uploading...`)
-      await uploadSkriptToMinehut(fullFile, options1)
+      await uploadSkriptToMinehut(__dirname+'\\'+filename, options1)
       
     })
 
@@ -63,7 +64,6 @@ program
   })
 
 program.parse(process.argv)
-
 
 async function editConfigFile(what, to) {
   return new Promise(async (resolve, reject) => {
