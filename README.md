@@ -17,6 +17,7 @@ $ npm install minehutskriptuploader -g
 
 ##### Options
 -r : To immediatly reload the skript in your server
+-s : Servername you wan't to reload. If not defined it will take the first server.
 
 ##### Login:
 
@@ -43,4 +44,5 @@ $ mhsu watch ./
 $ mhsu login martvanenck1@gmail.com hunter12
 $ mhsu upload sidebar.sk
 $ mhsu watch ./ -r
+$ mhsu watch ./ -r -s stranted
 ```
