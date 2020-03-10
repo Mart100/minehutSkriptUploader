@@ -7,7 +7,7 @@ const cp = require('child_process')
 
 const Minehut = new MinehutAPI()
 
-program.version('1.0.7')
+program.version('1.0.8')
 
 program
   .command('upload [file]')
@@ -83,6 +83,7 @@ program.parse(process.argv)
 async function editConfigFile(what, to) {
   return new Promise(async (resolve, reject) => {
     let json = await readConfigFile()
+    if(!json) json = {}
     json[what] = to
     fs.writeFile(__dirname+'\\config.json', JSON.stringify(json), 'utf8', (err) => {
       if(err) throw err;
@@ -92,10 +93,15 @@ async function editConfigFile(what, to) {
 }
 async function readConfigFile() {
   return new Promise((resolve, reject) => {
-    fs.readFile(__dirname+'\\config.json', 'utf8', (err, data) => {
-      if(err) throw err;
-      resolve(JSON.parse(data))
-    })
+    try {
+      fs.readFile(__dirname+'\\config.json', 'utf8', (err, data) => {
+        if(err) throw err;
+        resolve(JSON.parse(data))
+      })
+    }
+    catch(err) {
+      console.error(err)
+    }
   })
 }
 
