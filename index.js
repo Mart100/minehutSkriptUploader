@@ -12,6 +12,7 @@ program.version('1.0.6')
 program
   .command('upload [file]')
   .option("-r, --reload", "Reload the skript ingame")
+  .option("-s, --server <serverName>", "Specify a server")
   .description('upload a specific file')
   .action((file, options) => {
     if(!file) return console.log('Please specify a file')
@@ -19,7 +20,7 @@ program
     let options1 = {}
     if(options.reload) options1.reload = true
     let fullFile = process.cwd() + '\\' + file
-    uploadSkriptToMinehut(fullFile, options1)
+    uploadSkriptToMinehut(fullFile, options1, options.server)
 
   })
 
@@ -27,6 +28,7 @@ program
 program
   .command('watch [file/dir]')
   .option("-r, --reload", "Reload the skript ingame")
+  .option("-s, --server <serverName>", "Specify a server")
   .description('Upload when file updates')
   .action((file, options) => {
     if(!file) return console.log('Please specify a file')
@@ -42,7 +44,7 @@ program
       if(lastSave+250 > now) return
       lastSave = now
       console.log(`File ${filename} has updated. Uploading...`)
-      await uploadSkriptToMinehut(process.cwd()+'\\'+filename, options1)
+      await uploadSkriptToMinehut(process.cwd()+'\\'+filename, options1, options.server)
       
     })
 
@@ -106,7 +108,7 @@ async function getFileContents(file) {
   })
 }
 
-async function uploadSkriptToMinehut(fileLoc, options) {
+async function uploadSkriptToMinehut(fileLoc, options, serverName) {
   return new Promise(async (resolve, reject) => {
 
     if(!options) options = {}
@@ -115,7 +117,21 @@ async function uploadSkriptToMinehut(fileLoc, options) {
     if(config.email == "" || config.password == "") return console.log('Please login first using: mhsu login [email] [password]')
     await Minehut.getLoginSession(config.email, config.password)
     let user = await Minehut.getCurrentUser()
-    let server = Minehut.server(user.servers[0])
+    let server
+
+    if(serverName) {
+      let servers = await Minehut.getServers()
+      servers = servers.servers
+      let serverObj = servers.find(s => s.name == serverName)
+      if(!serverObj) return console.log("Server not found! Please check its visibility")
+      let serverID = serverObj._id
+      server = Minehut.server(serverID)
+    } else {
+      server = Minehut.server(user.servers[0])
+    }
+
+    console.log(server)
+
     let fileLocSplit = fileLoc.split('\\')
     let fileName = fileLocSplit[fileLocSplit.length-1]
     await server.editFile(`plugins/Skript/scripts/${fileName}`, skriptContent)
