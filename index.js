@@ -7,7 +7,7 @@ const cp = require('child_process')
 
 const Minehut = new MinehutAPI()
 
-program.version('1.0.8')
+program.version('1.0.9')
 
 program
   .command('upload [file]')
@@ -135,8 +135,6 @@ async function uploadSkriptToMinehut(fileLoc, options, serverName) {
     } else {
       server = Minehut.server(user.servers[0])
     }
-
-    console.log(server)
 
     let fileLocSplit = fileLoc.split('\\')
     let fileName = fileLocSplit[fileLocSplit.length-1]
