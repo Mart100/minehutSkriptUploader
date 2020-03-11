@@ -19,7 +19,7 @@ program
     if(!file.endsWith(".sk")) file += '.sk'
     let options1 = {}
     if(options.reload) options1.reload = true
-    let fullFile = process.cwd() + '\\' + file
+    let fullFile = path.join(process.cwd(), file)
     uploadSkriptToMinehut(fullFile, options1, options.server)
 
   })
@@ -33,7 +33,7 @@ program
   .action((file, options) => {
     if(!file) return console.log('Please specify a file')
     if(!file.endsWith(".sk") && file != "./") file += '.sk'
-    let fullFile = process.cwd() + '\\' + file
+    let fullFile = path.join(process.cwd(), file)
     let options1 = {}
     if(options.reload) options1.reload = true
     let lastSave = new Date().getTime()
@@ -44,7 +44,7 @@ program
       if(lastSave+250 > now) return
       lastSave = now
       console.log(`File ${filename} has updated. Uploading...`)
-      await uploadSkriptToMinehut(process.cwd()+'\\'+filename, options1, options.server)
+      await uploadSkriptToMinehut(path.join(process.cwd(), filename), options1, options.server)
       
     })
 
@@ -85,7 +85,7 @@ async function editConfigFile(what, to) {
     let json = await readConfigFile()
     if(!json) json = {}
     json[what] = to
-    fs.writeFile(__dirname+'\\config.json', JSON.stringify(json), 'utf8', (err) => {
+    fs.writeFile(path.join(__dirname, 'config.json'), JSON.stringify(json), 'utf8', (err) => {
       if(err) throw err;
       resolve()
     })
