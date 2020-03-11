@@ -8,7 +8,7 @@ const path = require('path')
 
 const Minehut = new MinehutAPI()
 
-program.version('1.0.14')
+program.version('1.0.15')
 
 program
   .command('upload [file]')
