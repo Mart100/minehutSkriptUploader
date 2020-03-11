@@ -8,7 +8,7 @@ const path = require('path')
 
 const Minehut = new MinehutAPI()
 
-program.version('1.0.9')
+program.version('1.0.10')
 
 program
   .command('upload [file]')
@@ -94,15 +94,12 @@ async function editConfigFile(what, to) {
 }
 async function readConfigFile() {
   return new Promise((resolve, reject) => {
-    try {
-      fs.readFile(__dirname+'\\config.json', 'utf8', (err, data) => {
-        if(err) throw err;
-        resolve(JSON.parse(data))
-      })
-    }
-    catch(err) {
-      console.error(err)
-    }
+    let configPos = path.join(__dirname, 'config.json')
+    fs.ensureFileSync(configPos)
+    fs.readFile(configPos, 'utf8', (err, data) => {
+      if(err) throw err;
+      resolve(JSON.parse(data))
+    })
   })
 }
 
