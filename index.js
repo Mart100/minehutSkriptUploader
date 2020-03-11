@@ -4,6 +4,7 @@ const fs = require('fs')
 const program = require('commander')
 const MinehutAPI = require('node-minehut-api')
 const cp = require('child_process')
+const path = require('path')
 
 const Minehut = new MinehutAPI()
 
