@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const fs = require('fs')
+const fs = require('fs-extra')
 const program = require('commander')
 const MinehutAPI = require('node-minehut-api')
 const cp = require('child_process')
@@ -8,7 +8,7 @@ const path = require('path')
 
 const Minehut = new MinehutAPI()
 
-program.version('1.0.11')
+program.version('1.0.12')
 
 program
   .command('upload [file]')
@@ -97,7 +97,7 @@ async function readConfigFile() {
     let configPos = path.join(__dirname, 'config.json')
     fs.ensureFileSync(configPos)
     fs.readFile(configPos, 'utf8', (err, data) => {
-      if(err) throw err;
+      if(err) console.log(err);
       resolve(JSON.parse(data))
     })
   })
