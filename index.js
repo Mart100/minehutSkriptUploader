@@ -135,7 +135,7 @@ async function uploadSkriptToMinehut(fileLoc, options, serverName) {
       server = Minehut.server(user.servers[0])
     }
 
-    let fileLocSplit = fileLoc.split('\\')
+    let fileLocSplit = fileLoc.split('/')
     let fileName = fileLocSplit[fileLocSplit.length-1]
     await server.editFile(`plugins/Skript/scripts/${fileName}`, skriptContent)
     if(options.reload) {
