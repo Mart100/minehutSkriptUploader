@@ -1,7 +1,8 @@
+<br>
 <h1>This tool does not work anymore due to minehut's API overhaul</h1>
 
 
-
+<br><br><br><br><br><br><br><br>
 
 # MinehutSkriptUploader
 
