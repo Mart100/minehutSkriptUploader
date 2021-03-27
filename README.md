@@ -1,3 +1,8 @@
+<h1>This tool does not work anymore due to minehut's API overhaul</h1>
+
+
+
+
 # MinehutSkriptUploader
 
 MinehutSkriptUploader is an easy way to hotreload and upload skript files to your minehut server.
